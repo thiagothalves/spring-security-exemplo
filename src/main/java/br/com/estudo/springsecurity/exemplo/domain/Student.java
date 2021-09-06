@@ -11,9 +11,15 @@ public class Student extends AbstractEntity {
 
 	private String name;
 
+	public Student() {
+		super();
+	}
+
+	public Student(String name) {
+		this.name = name;
+	}
 	public Student(Long id, String name) {
 		this.id = id;
-
 		this.name = name;
 	}
 
