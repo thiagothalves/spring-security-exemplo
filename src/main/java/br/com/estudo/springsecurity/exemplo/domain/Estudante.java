@@ -2,6 +2,11 @@ package br.com.estudo.springsecurity.exemplo.domain;
 
 import br.com.estudo.springsecurity.exemplo.util.Entidade;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "estudante")
 public class Estudante extends Entidade {
 
 	private String nome;
