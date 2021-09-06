@@ -14,42 +14,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("management/api/v1/estudante")
+@RequestMapping("management/api/v1/student")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class EstudanteManagementController {
+public class StudentManagementController {
 
-	private static List<Estudante> estudantes;
+	private static List<Student> students;
 
 	static {
-		estudantes = List.of(new Estudante(1L, "Thiago Alves"), new Estudante(2L, "Heitor Corrêa"),
-				new Estudante(3L, "Sofia Corrêa"));
+		students = List.of(new Student(1L, "Thiago Alves"), new Student(2L, "Heitor Corrêa"),
+				new Student(3L, "Sofia Corrêa"));
 	}
 
 	@GetMapping
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE')")
-	public List<Estudante> findAll() {
-		return estudantes;
+	public List<Student> findAll() {
+		return students;
 	}
 
 	@PostMapping
 	@PreAuthorize("hasAuthority('student:write')")
-	public void create(@RequestBody Estudante estudante) {
-		estudantes.add(estudante);
+	public void create(@RequestBody Student student) {
+		students.add(student);
 	}
 
 	@DeleteMapping(path = "{id}")
 	@PreAuthorize("hasAuthority('student:write')")
 	public void remove(@PathVariable("id") Long id) {
-		estudantes.removeIf(estudante -> estudante.getId().equals(id));
+		students.removeIf(student -> student.getId().equals(id));
 	}
 
 	@PutMapping(path = "{id}")
 	@PreAuthorize("hasAuthority('student:write')")
-	public void update(@PathVariable("id") Long id, @RequestBody Estudante estudante) throws Exception {
+	public void update(@PathVariable("id") Long id, @RequestBody Student student) throws Exception {
 
-		estudantes.forEach(e -> {
+		students.forEach(e -> {
 			if (e.getId().equals(id)) {
-				e.setNome(estudante.getNome());
+				e.setName(student.getName());
 			}
 		});
 

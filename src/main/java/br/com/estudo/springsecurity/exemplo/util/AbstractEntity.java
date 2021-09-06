@@ -3,7 +3,7 @@ package br.com.estudo.springsecurity.exemplo.util;
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class Entidade {
+public abstract class AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
