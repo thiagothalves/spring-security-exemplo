@@ -1,4 +1,4 @@
-package br.com.estudo.springsecurity.exemplo.repositoy;
+package br.com.estudo.springsecurity.exemplo.repository;
 
 import br.com.estudo.springsecurity.exemplo.domain.Student;
 import org.springframework.data.jpa.repository.JpaRepository;

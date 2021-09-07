@@ -1,5 +1,6 @@
-package br.com.estudo.springsecurity.exemplo.domain;
+package br.com.estudo.springsecurity.exemplo.controller;
 
+import br.com.estudo.springsecurity.exemplo.domain.Student;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.bind.annotation.*;
