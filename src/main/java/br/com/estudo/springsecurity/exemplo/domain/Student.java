@@ -1,27 +1,17 @@
 package br.com.estudo.springsecurity.exemplo.domain;
 
+import br.com.estudo.springsecurity.exemplo.dto.StudentDTO;
 import br.com.estudo.springsecurity.exemplo.util.AbstractEntity;
+import br.com.estudo.springsecurity.exemplo.util.Convertible;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "student")
-public class Student extends AbstractEntity {
+public class Student extends AbstractEntity implements Convertible<StudentDTO> {
 
 	private String name;
-
-	public Student() {
-		super();
-	}
-
-	public Student(String name) {
-		this.name = name;
-	}
-	public Student(Long id, String name) {
-		this.id = id;
-		this.name = name;
-	}
 
 	public String getName() {
 		return name;
@@ -36,4 +26,8 @@ public class Student extends AbstractEntity {
 		return "Student [id=" + id + ", name=" + name + "]";
 	}
 
+	@Override
+	public StudentDTO convert() {
+		return new StudentDTO(this);
+	}
 }
