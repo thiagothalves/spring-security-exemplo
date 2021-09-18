@@ -4,7 +4,6 @@ import br.com.estudo.springsecurity.exemplo.domain.Student;
 import br.com.estudo.springsecurity.exemplo.dto.StudentDTO;
 import br.com.estudo.springsecurity.exemplo.service.StudentService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -16,15 +15,17 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("management/api/v1/student")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class StudentManagementController {
 
-    @Autowired
-    StudentService studentService;
+    private final StudentService studentService;
+
+    public StudentManagementController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
 
     @GetMapping

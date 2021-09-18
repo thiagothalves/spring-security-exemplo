@@ -4,7 +4,6 @@ import br.com.estudo.springsecurity.exemplo.domain.Student;
 import br.com.estudo.springsecurity.exemplo.dto.StudentDTO;
 import br.com.estudo.springsecurity.exemplo.service.StudentService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,8 +18,13 @@ import javax.validation.Valid;
 @RequestMapping("api/v1/student")
 public class StudentController {
 
-    @Autowired
-    StudentService studentService;
+
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
 
     @GetMapping
     public ResponseEntity<Page<StudentDTO>> findAll(
@@ -55,7 +59,7 @@ public class StudentController {
 
     @PutMapping("{id}")
     public ResponseEntity<StudentDTO> update(@PathVariable(value = "id") Long id,
-                           @Valid @RequestBody StudentDTO studentDTO) {
+                                             @Valid @RequestBody StudentDTO studentDTO) {
         Student student = new Student();
         BeanUtils.copyProperties(studentDTO, student);
         return ResponseEntity.ok().body(studentService.update(id, student));
